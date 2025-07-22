@@ -28,9 +28,27 @@ class GameProvider {
 
   List<MemoryCard> createGameCards() {
     List<MemoryCard> list = [];
+
     for (var i = 0; i < 8; i++) {
-      list.add(createCard());
+      // Escolhe ícone e cor
+      IconData icon = getRandomIcon();
+      Color color = getRandomColor();
+
+      // Cria carta com o ícone e cor escolhidos
+      MemoryCard card = MemoryCard(
+        id: Random().nextDouble().toString(),
+        icon: Icon(icon),
+        color: color,
+      );
+
+      // Adiciona na lista
+      list.add(card);
+
+      // Remove o ícone e a cor para não repetir
+      iconsList.remove(icon);
+      colorsList.remove(color);
     }
+
     return list;
   }
 
