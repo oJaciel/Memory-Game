@@ -31,7 +31,12 @@ class GameProvider {
     for (var i = 0; i < 8; i++) {
       list.add(createCard());
     }
-
     return list;
+  }
+
+  List<MemoryCard> DuplicateAndShuffleList(List<MemoryCard> list) {
+    List<MemoryCard> duplicatedList = [...list, ...list];
+    duplicatedList.shuffle(Random());
+    return duplicatedList;
   }
 }
