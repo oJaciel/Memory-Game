@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memory_game/components/game_card.dart';
-import 'package:memory_game/models/game_provider.dart';
+import 'package:memory_game/models/cards_provider.dart';
 import 'package:memory_game/models/memory_card.dart';
 
 class GamePage extends StatefulWidget {
@@ -12,16 +12,20 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   List<MemoryCard> cardList = [];
-  late List<MemoryCard> doubleList = GameProvider().DuplicateAndShuffleList(cardList);
+  late List<MemoryCard> doubleList = CardsProvider().DuplicateAndShuffleList(
+    cardList,
+  );
 
   @override
   void initState() {
     super.initState();
-    cardList = GameProvider().createGameCards();
+    cardList = CardsProvider().createGameCards();
   }
 
   @override
   Widget build(BuildContext context) {
+    
+
     return Scaffold(
       appBar: AppBar(title: Text('Jogo da Memória')),
       body: Padding(

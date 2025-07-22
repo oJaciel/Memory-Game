@@ -1,60 +1,49 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:memory_game/models/memory_card.dart';
-import 'package:memory_game/utils/game_utils.dart';
 
-class GameProvider {
-  final List<IconData> iconsList = GameUtils().iconsList;
+class GameProvider with ChangeNotifier {
+  int pointsCounter = 0;
+  MemoryCard? selectedCard1;
+  MemoryCard? selectedCard2;
 
-  final List<Color> colorsList = GameUtils().colorsList;
+  void selectCard(MemoryCard card) {
+    card.isFaceUp = true;
 
-  IconData getRandomIcon() {
-    return iconsList[Random().nextInt(iconsList.length)];
-  }
-
-  Color getRandomColor() {
-    return colorsList[Random().nextInt(colorsList.length)];
-  }
-
-  MemoryCard createCard() {
-    return MemoryCard(
-      id: Random().nextDouble().toString(),
-      icon: Icon(getRandomIcon()),
-      color: getRandomColor(),
-    );
-  }
-
-  List<MemoryCard> createGameCards() {
-    List<MemoryCard> list = [];
-
-    for (var i = 0; i < 8; i++) {
-      // Escolhe ícone e cor
-      IconData icon = getRandomIcon();
-      Color color = getRandomColor();
-
-      // Cria carta com o ícone e cor escolhidos
-      MemoryCard card = MemoryCard(
-        id: Random().nextDouble().toString(),
-        icon: Icon(icon),
-        color: color,
-      );
-
-      // Adiciona na lista
-      list.add(card);
-
-      // Remove o ícone e a cor para não repetir
-      iconsList.remove(icon);
-      colorsList.remove(color);
+    //Se carta 1 é nula, atribui valor a ela
+    if (selectedCard1 == null) {
+      selectedCard1 = card;
+    } else {
+      //Senão, atribui valor a carta 2 e checa
+      selectedCard2 = card;
+      Future.delayed(Duration(milliseconds: 800), () {
+        checkCards();
+      });
     }
 
-    return list;
+    notifyListeners();
   }
 
-  List<MemoryCard> DuplicateAndShuffleList(List<MemoryCard> list) {
-    List<MemoryCard> duplicatedList = [...list, ...list];
-    duplicatedList.shuffle(Random());
-    return duplicatedList;
+  void checkCards() {
+    //Se ambas as cartas existirem, checa
+    if (selectedCard1 != null && selectedCard2 != null) {
+      //Se id forem iguais, aumenta ponto
+      if (selectedCard1!.id == selectedCard2!.id) {
+        selectedCard1!.isMatched = true;
+        selectedCard2!.isMatched = true;
+        pointsCounter++;
+        print(pointsCounter);
+        print('Acertou');
+        //Senão, não faz nada
+      } else {
+        selectedCard1!.isFaceUp = false;
+        selectedCard2!.isFaceUp = false;
+        print('Não acertou');
+      }
+
+      //Reseta valores depois de checar
+      selectedCard1 = null;
+      selectedCard2 = null;
+      notifyListeners();
+    }
   }
 }
