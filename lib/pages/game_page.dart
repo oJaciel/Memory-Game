@@ -24,8 +24,6 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       appBar: AppBar(title: Text('Jogo da Memória')),
       body: Padding(

@@ -21,13 +21,19 @@ class _GameCardState extends State<GameCard> {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
       child: IconButton(
         onPressed: () {
-          widget.card.isMatched ? null :
-
-          provider.selectCard(widget.card);
+          widget.card.isMatched ? null : provider.selectCard(widget.card, context);
         },
-        icon: widget.card.isFaceUp || widget.card.isMatched ? widget.card.icon : Icon(Icons.help_outline_sharp),
+        icon: widget.card.isFaceUp || widget.card.isMatched
+            ? widget.card.icon
+            : Icon(Icons.help_outline_sharp),
         color: Colors.white,
-        style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(widget.card.isFaceUp || widget.card.isMatched ? widget.card.color : Colors.black)),
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(
+            widget.card.isFaceUp || widget.card.isMatched
+                ? widget.card.color
+                : Colors.black,
+          ),
+        ),
       ),
     );
   }
