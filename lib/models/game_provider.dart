@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_game/models/cards_provider.dart';
 import 'package:memory_game/models/memory_card.dart';
 import 'package:memory_game/components/result_dialog.dart';
 
@@ -6,6 +7,7 @@ class GameProvider with ChangeNotifier {
   int pointsCounter = 0;
   MemoryCard? selectedCard1;
   MemoryCard? selectedCard2;
+  List<MemoryCard> cardList = [];
 
   void selectCard(MemoryCard card, BuildContext context) {
     card.isFaceUp = true;
@@ -49,5 +51,14 @@ class GameProvider with ChangeNotifier {
       selectedCard2 = null;
       notifyListeners();
     }
+  }
+
+  void startGame() {
+    List<MemoryCard> initialList = CardsProvider().createGameCards();
+    cardList = CardsProvider().DuplicateAndShuffleList(initialList);
+    selectedCard1 = null;
+    selectedCard2 = null;
+    pointsCounter = 0;
+    notifyListeners();
   }
 }

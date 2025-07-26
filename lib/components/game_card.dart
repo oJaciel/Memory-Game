@@ -31,7 +31,7 @@ class _GameCardState extends State<GameCard> {
           backgroundColor: WidgetStatePropertyAll(
             widget.card.isFaceUp || widget.card.isMatched
                 ? widget.card.color
-                : Colors.black,
+                : widget.card.color,
           ),
         ),
       ),

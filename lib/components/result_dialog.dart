@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:memory_game/models/game_provider.dart';
 import 'package:memory_game/utils/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class ResultDialog extends StatelessWidget {
   const ResultDialog({super.key});
@@ -12,15 +14,10 @@ class ResultDialog extends StatelessWidget {
       backgroundColor: Colors.deepPurple.shade50,
       child: Card(
         elevation: 10,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 40.0,
-            horizontal: 24.0,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -64,12 +61,13 @@ class ResultDialog extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      Navigator.of(
+                      Provider.of<GameProvider>(
                         context,
-                      ).pushReplacementNamed(AppRoutes.GAME_PAGE);
+                        listen: false,
+                      ).startGame();
+                      Navigator.of(context).pop();
                     },
                     icon: const Icon(Icons.replay),
-                    
                   ),
                   IconButton.outlined(
                     style: OutlinedButton.styleFrom(
@@ -89,7 +87,6 @@ class ResultDialog extends StatelessWidget {
                       ).pushReplacementNamed(AppRoutes.HOME_PAGE);
                     },
                     icon: const Icon(Icons.home),
-                    
                   ),
                 ],
               ),
