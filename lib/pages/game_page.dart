@@ -22,18 +22,21 @@ class _GamePageState extends State<GamePage> {
     final provider = Provider.of<GameProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Jogo da Memória'),
+        title: Text('Encontre os pares!'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          itemCount: provider.cardList.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, // 4 colunas
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: GridView.builder(
+            itemCount: provider.cardList.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4, // 4 colunas
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            itemBuilder: (ctx, i) => GameCard(card: provider.cardList[i]),
           ),
-          itemBuilder: (ctx, i) => GameCard(card: provider.cardList[i]),
         ),
       ),
     );
