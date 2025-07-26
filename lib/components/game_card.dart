@@ -10,8 +10,6 @@ class GameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<GameProvider>(context);
-
     return AspectRatio(
       aspectRatio: 1,
       child: Material(
@@ -21,7 +19,10 @@ class GameCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           onTap: card.isMatched
               ? null
-              : () => provider.selectCard(card, context),
+              : () => Provider.of<GameProvider>(
+                  context,
+                  listen: false,
+                ).selectCard(card),
           child: Center(
             child: Icon(
               card.isFaceUp || card.isMatched

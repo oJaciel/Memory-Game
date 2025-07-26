@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_game/models/cards_provider.dart';
 import 'package:memory_game/models/game_provider.dart';
 import 'package:memory_game/pages/game_page.dart';
 import 'package:memory_game/pages/home_page.dart';
@@ -14,7 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => GameProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => CardsProvider()),
+        ChangeNotifierProvider(create: (_) => GameProvider()),
+      ],
       child: MaterialApp(
         title: 'Memory Game',
         debugShowCheckedModeBanner: false,

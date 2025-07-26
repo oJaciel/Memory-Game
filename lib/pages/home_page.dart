@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memory_game/utils/app_routes.dart';
+import 'package:memory_game/components/difficulty_dialog.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,10 +20,7 @@ class HomePage extends StatelessWidget {
             ),
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 60,
-                horizontal: 36,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 36),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -77,7 +74,10 @@ class HomePage extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(AppRoutes.GAME_PAGE);
+                      showDialog(
+                        context: context,
+                        builder: (_) => DifficultyDialog(),
+                      );
                     },
                     icon: const Icon(Icons.play_arrow_outlined),
                   ),

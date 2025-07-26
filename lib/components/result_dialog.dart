@@ -64,7 +64,7 @@ class ResultDialog extends StatelessWidget {
                       Provider.of<GameProvider>(
                         context,
                         listen: false,
-                      ).startGame();
+                      ).startGame(context);
                       Navigator.of(context).pop();
                     },
                     icon: const Icon(Icons.replay),

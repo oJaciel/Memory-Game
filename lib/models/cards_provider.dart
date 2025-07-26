@@ -5,10 +5,11 @@ import 'package:flutter/widgets.dart';
 import 'package:memory_game/models/memory_card.dart';
 import 'package:memory_game/utils/game_utils.dart';
 
-class CardsProvider {
+class CardsProvider with ChangeNotifier {
   final List<IconData> iconsList = GameUtils().iconsList;
 
   final List<Color> colorsList = GameUtils().colorsList;
+  int? cardsQuantity;
 
   IconData getRandomIcon() {
     return iconsList[Random().nextInt(iconsList.length)];
@@ -26,38 +27,38 @@ class CardsProvider {
     );
   }
 
+  void setCardsQuantity(int quantity) {
+    cardsQuantity = quantity;
+    notifyListeners();
+  }
+
   List<MemoryCard> createGameCards() {
     List<MemoryCard> list = [];
+    List<IconData> tempIcons = List.from(iconsList);
+    List<Color> tempColors = List.from(colorsList);
 
-    for (var i = 0; i < 8; i++) {
-      // Escolhe ícone e cor
-      IconData icon = getRandomIcon();
-      Color color = getRandomColor();
+    for (var i = 0; i < cardsQuantity!; i++) {
+      IconData icon = tempIcons.removeAt(Random().nextInt(tempIcons.length));
+      Color color = tempColors.removeAt(Random().nextInt(tempColors.length));
 
-      // Cria carta com o ícone e cor escolhidos
       MemoryCard card = MemoryCard(
         id: Random().nextDouble().toString(),
         icon: Icon(icon),
         color: color,
       );
 
-      // Adiciona na lista
       list.add(card);
-
-      // Remove o ícone e a cor para não repetir
-      iconsList.remove(icon);
-      colorsList.remove(color);
     }
-
     return list;
   }
 
   List<MemoryCard> DuplicateAndShuffleList(List<MemoryCard> list) {
-    List<MemoryCard> duplicatedList = [...list, ...list.map((card) => MemoryCard(
-          id: card.id,
-          icon: card.icon,
-          color: card.color,
-        )),];
+    List<MemoryCard> duplicatedList = [
+      ...list,
+      ...list.map(
+        (card) => MemoryCard(id: card.id, icon: card.icon, color: card.color),
+      ),
+    ];
     duplicatedList.shuffle(Random());
     return duplicatedList;
   }
