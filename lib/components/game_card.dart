@@ -16,6 +16,7 @@ class GameCard extends StatelessWidget {
         color: card.isFaceUp || card.isMatched ? card.color : Colors.black,
         borderRadius: BorderRadius.circular(10),
         child: InkWell(
+          splashColor: card.color,
           borderRadius: BorderRadius.circular(10),
           onTap: card.isMatched
               ? null

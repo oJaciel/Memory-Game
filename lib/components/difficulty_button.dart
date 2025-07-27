@@ -17,23 +17,28 @@ class DifficultyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      label: Text(label, style: TextStyle(fontSize: 16)),
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        backgroundColor: Colors.deepPurple,
-        foregroundColor: Colors.white,
+    return SizedBox(
+      width: 250,
+      child: ElevatedButton.icon(
+        label: Text(label, style: TextStyle(fontSize: 16)),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
+        ),
+        icon: Icon(icon, size: 32),
+        onPressed: () {
+          Provider.of<CardsProvider>(
+            context,
+            listen: false,
+          ).setCardsQuantity(cardsQuantity);
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(AppRoutes.GAME_PAGE);
+        },
       ),
-      icon: Icon(icon, size: 32),
-      onPressed: () {
-        Provider.of<CardsProvider>(
-          context,
-          listen: false,
-        ).setCardsQuantity(cardsQuantity);
-        Navigator.of(context).pop();
-        Navigator.of(context).pushNamed(AppRoutes.GAME_PAGE);
-      },
     );
   }
 }

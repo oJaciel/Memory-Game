@@ -52,6 +52,14 @@ class GameProvider with ChangeNotifier {
     selectedCard1 = null;
     selectedCard2 = null;
     pointsCounter = 0;
+
+    cardList.forEach((item) => item.isFaceUp = true);
+
     notifyListeners();
+
+    Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+      cardList.forEach((item) => item.isFaceUp = false);
+      notifyListeners();
+    });
   }
 }

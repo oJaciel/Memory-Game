@@ -26,12 +26,25 @@ class DifficultyDialog extends StatelessWidget {
                   color: Colors.deepPurple,
                 ),
               ),
-              const SizedBox(height: 12),
               const SizedBox(height: 32),
-              Column(spacing: 16, children: [
-                DifficultyButton(label: 'Fácil (2 pares)', icon: Icons.mood, cardsQuantity: 2),
-                DifficultyButton(label: 'Médio (4 pares)', icon: Icons.sentiment_neutral, cardsQuantity: 4),
-                DifficultyButton(label: 'Difícil (8 pares)', icon: Icons.sentiment_very_dissatisfied_rounded, cardsQuantity: 8),
+              Column(
+                spacing: 16,
+                children: [
+                  DifficultyButton(
+                    label: 'Fácil (3 pares)',
+                    icon: Icons.mood,
+                    cardsQuantity: 3,
+                  ),
+                  DifficultyButton(
+                    label: 'Médio (6 pares)',
+                    icon: Icons.sentiment_neutral,
+                    cardsQuantity: 6,
+                  ),
+                  DifficultyButton(
+                    label: 'Difícil (8 pares)',
+                    icon: Icons.sentiment_very_dissatisfied_rounded,
+                    cardsQuantity: 8,
+                  ),
                 ],
               ),
             ],
