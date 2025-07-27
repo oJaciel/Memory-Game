@@ -4,6 +4,7 @@ import 'package:memory_game/models/game_provider.dart';
 import 'package:memory_game/pages/game_page.dart';
 import 'package:memory_game/pages/home_page.dart';
 import 'package:memory_game/utils/app_routes.dart';
+import 'package:memory_game/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -26,9 +27,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.HOME_PAGE: (ctx) => HomePage(),
           AppRoutes.GAME_PAGE: (ctx) => GamePage(),
         },
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+        theme: AppTheme().appTheme,
         home: HomePage(),
       ),
     );

@@ -63,10 +63,14 @@ class _GamePageState extends State<GamePage> {
     });
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(title: Text('Encontre os pares!')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+          ),
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Center(
             child: GridView.builder(

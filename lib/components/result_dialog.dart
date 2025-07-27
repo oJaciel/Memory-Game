@@ -11,7 +11,7 @@ class ResultDialog extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dialog(
-      backgroundColor: Colors.deepPurple.shade50,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Card(
         elevation: 10,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -31,7 +31,7 @@ class ResultDialog extends StatelessWidget {
                 'Parabéns!',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               const SizedBox(height: 12),
@@ -57,8 +57,8 @@ class ResultDialog extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      backgroundColor: Colors.deepPurple,
-                      foregroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      foregroundColor: Theme.of(context).colorScheme.onSecondary,
                     ),
                     onPressed: () {
                       Provider.of<GameProvider>(
@@ -78,8 +78,8 @@ class ResultDialog extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      side: const BorderSide(color: Colors.deepPurple),
-                      foregroundColor: Colors.deepPurple,
+                      side: BorderSide(color: Theme.of(context).colorScheme.secondary),
+                      foregroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                     onPressed: () {
                       Navigator.of(

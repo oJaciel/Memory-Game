@@ -9,11 +9,11 @@ class DifficultyDialog extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dialog(
-      backgroundColor: Colors.deepPurple.shade50,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Card(
         elevation: 10,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onSurface,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24.0),
           child: Column(
@@ -23,7 +23,7 @@ class DifficultyDialog extends StatelessWidget {
                 'Selecione a dificuldade',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               const SizedBox(height: 32),

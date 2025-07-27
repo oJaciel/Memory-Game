@@ -20,16 +20,16 @@ class DifficultyButton extends StatelessWidget {
     return SizedBox(
       width: 250,
       child: ElevatedButton.icon(
-        label: Text(label, style: TextStyle(fontSize: 16)),
+        label: Text(label, style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.onSecondary)),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          foregroundColor: Theme.of(context).colorScheme.onSecondary,
         ),
-        icon: Icon(icon, size: 32),
+        icon: Icon(icon, size: 32, color: Theme.of(context).colorScheme.onSecondary,),
         onPressed: () {
           Provider.of<CardsProvider>(
             context,
