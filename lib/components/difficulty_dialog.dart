@@ -21,6 +21,7 @@ class DifficultyDialog extends StatelessWidget {
             children: [
               Text(
                 'Selecione a dificuldade',
+                textAlign: TextAlign.center,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.primary,

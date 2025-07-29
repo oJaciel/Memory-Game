@@ -44,10 +44,12 @@ class HomePage extends StatelessWidget {
                     ),
                     Text(
                       'Jogo da Memória',
+                      textAlign: TextAlign.center,
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 36,
+                        
                       ),
                     ),
                     const SizedBox(height: 32),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:memory_game/models/cards_provider.dart';
 import 'package:memory_game/models/game_provider.dart';
 import 'package:memory_game/pages/game_page.dart';
@@ -7,9 +8,16 @@ import 'package:memory_game/utils/app_routes.dart';
 import 'package:memory_game/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
