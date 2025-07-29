@@ -8,17 +8,27 @@ class GameProvider with ChangeNotifier {
   MemoryCard? selectedCard1;
   MemoryCard? selectedCard2;
   List<MemoryCard> cardList = [];
+  bool canTap = true;
 
   void selectCard(MemoryCard card) {
+    if (!canTap || card.isFaceUp || card.isMatched) return;
+
     card.isFaceUp = true;
     //Se carta 1 é nula, atribui valor a ela
     if (selectedCard1 == null) {
       selectedCard1 = card;
     } else {
+      
       //Se não é, atribui valor a carta 2 e checa
       selectedCard2 = card;
+
+      canTap = false;
+      notifyListeners();
+
       Future.delayed(Duration(milliseconds: 800), () {
         checkCards();
+        canTap = true;
+        notifyListeners();
       });
     }
     notifyListeners();

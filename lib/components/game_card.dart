@@ -18,12 +18,14 @@ class GameCard extends StatelessWidget {
         child: InkWell(
           splashColor: card.color,
           borderRadius: BorderRadius.circular(10),
-          onTap: card.isMatched
-              ? null
-              : () => Provider.of<GameProvider>(
-                  context,
-                  listen: false,
-                ).selectCard(card),
+          onTap: Provider.of<GameProvider>(context).canTap
+              ? card.isMatched
+                    ? null
+                    : () => Provider.of<GameProvider>(
+                        context,
+                        listen: false,
+                      ).selectCard(card)
+              : null,
           child: Center(
             child: Icon(
               card.isFaceUp || card.isMatched
